@@ -1,0 +1,116 @@
+create database EFRole
+GO
+
+USE [EFRole]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+/****** Object:  Table [dbo].[EF_User] ******/
+CREATE TABLE [dbo].[EF_User](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[username] [varchar](50) NOT NULL,
+	[password] [varchar](50) NOT NULL,
+	[email] [varchar](50) NOT NULL,
+	[enabled] [tinyint] NOT NULL,
+	[accountNonExpired] [tinyint] NOT NULL,
+	[credentialsNonExpired] [tinyint] NOT NULL,
+	[accountNonLocked] [tinyint] NOT NULL,
+ CONSTRAINT [PK_EFUser] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UK_EFUser] UNIQUE NONCLUSTERED 
+(
+	[username] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+/****** Object:  Table [dbo].[EF_Role] ******/
+CREATE TABLE [dbo].[EF_Role](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[name] [varchar](50) NULL,
+ CONSTRAINT [PK_EFRole] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UK_EFRole] UNIQUE NONCLUSTERED 
+(
+	[name] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+/****** Object:  Table [dbo].[EF_Permission] ******/
+CREATE TABLE [dbo].[EF_Permission](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[name] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_EFPermission] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UK_EFPermission] UNIQUE NONCLUSTERED 
+(
+	[name] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+/****** Object:  Table [dbo].[EF_Role_User] ******/
+CREATE TABLE [dbo].[EF_Role_User](
+	[role_id] [int] NOT NULL,
+	[user_id] [int] NOT NULL,
+ CONSTRAINT [PK_EF_Role_User] PRIMARY KEY CLUSTERED 
+(
+	[role_id] ASC,
+	[user_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[EF_Role_User]  WITH CHECK ADD  CONSTRAINT [FK_EF_role_user_EF_Role] FOREIGN KEY([role_id])
+REFERENCES [dbo].[EF_Role] ([id])
+GO
+
+ALTER TABLE [dbo].[EF_Role_User] CHECK CONSTRAINT [FK_EF_role_user_EF_Role]
+GO
+
+ALTER TABLE [dbo].[EF_Role_User]  WITH CHECK ADD  CONSTRAINT [FK_EF_role_user_EF_User] FOREIGN KEY([user_id])
+REFERENCES [dbo].[EF_User] ([id])
+GO
+
+ALTER TABLE [dbo].[EF_Role_User] CHECK CONSTRAINT [FK_EF_role_user_EF_User]
+
+
+/****** Object:  Table [dbo].[EF_Permission_Role] ******/
+CREATE TABLE [dbo].[EF_Permission_Role](
+	[permission_id] [int] NOT NULL,
+	[role_id] [int] NOT NULL,
+ CONSTRAINT [PK_EF_Permission_Role] PRIMARY KEY CLUSTERED 
+(
+	[permission_id] ASC,
+	[role_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[EF_Permission_Role]  WITH CHECK ADD  CONSTRAINT [FK_EF_Permission_Role_EF_Permission] FOREIGN KEY([permission_id])
+REFERENCES [dbo].[EF_Permission] ([id])
+GO
+
+ALTER TABLE [dbo].[EF_Permission_Role] CHECK CONSTRAINT [FK_EF_Permission_Role_EF_Permission]
+GO
+
+ALTER TABLE [dbo].[EF_Permission_Role]  WITH CHECK ADD  CONSTRAINT [FK_EF_Permission_Role_EF_Role] FOREIGN KEY([role_id])
+REFERENCES [dbo].[EF_Role] ([id])
+GO
+
+ALTER TABLE [dbo].[EF_Permission_Role] CHECK CONSTRAINT [FK_EF_Permission_Role_EF_Role]
+
+
+GO
