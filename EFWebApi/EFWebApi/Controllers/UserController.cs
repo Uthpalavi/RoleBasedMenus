@@ -1,4 +1,4 @@
-using EFWebApi.Models;
+using EFCore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
@@ -42,7 +42,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
-    public JsonResult Post([FromBody] User user)
+    public JsonResult VerifyUserLogin([FromBody] User user)
     {
         string query = @"
                     SELECT [id]
@@ -64,7 +64,7 @@ public class UserController : ControllerBase
             using (SqlCommand myCommand = new SqlCommand(query, myCon))
             {
                 myReader = myCommand.ExecuteReader();
-                table.Load(myReader); ;
+                table.Load(myReader);
 
                 myReader.Close();
                 myCon.Close();

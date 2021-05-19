@@ -945,6 +945,19 @@
         "compile": {
           "ref/netstandard1.2/System.Threading.Timer.dll": {}
         }
+      },
+      "EFCore/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "5.0.6"
+        },
+        "compile": {
+          "bin/placeholder/EFCore.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/EFCore.dll": {}
+        }
       }
     }
   },
@@ -3681,10 +3694,16 @@
         "system.threading.timer.4.0.1.nupkg.sha512",
         "system.threading.timer.nuspec"
       ]
+    },
+    "EFCore/1.0.0": {
+      "type": "project",
+      "path": "../EFCore/EFCore.csproj",
+      "msbuildProject": "../EFCore/EFCore.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "EFCore >= 1.0.0",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 5.0.6",
       "Serilog.AspNetCore >= 4.1.0",
       "System.Data.SqlClient >= 4.8.2"
@@ -3716,7 +3735,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "G:\\EFWebApi\\EFCore\\EFCore.csproj": {
+              "projectPath": "G:\\EFWebApi\\EFCore\\EFCore.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -3760,7 +3783,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

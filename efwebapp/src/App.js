@@ -1,8 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 
-import {Home} from './components/Home';
+// import {Home} from '.components/Home';
 import {Login} from './components/Login';
+// import Navigation from './components/Navigation/';
 
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 

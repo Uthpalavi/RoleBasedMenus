@@ -33,6 +33,7 @@
     ".NETCoreApp,Version=v5.0": {
       "EFWebApi/1.0.0": {
         "dependencies": {
+          "EFCore": "1.0.0",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "5.0.6",
           "Serilog.AspNetCore": "4.1.0",
           "System.Data.SqlClient": "4.8.2",
@@ -966,6 +967,17 @@
           "Microsoft.NETCore.Platforms": "3.1.0",
           "Microsoft.NETCore.Targets": "1.1.0",
           "System.Runtime": "4.3.0"
+        }
+      },
+      "EFCore/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "5.0.6"
+        },
+        "runtime": {
+          "EFCore.dll": {}
+        },
+        "compile": {
+          "EFCore.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
@@ -3156,6 +3168,11 @@
       "sha512": "sha512-saGfUV8uqVW6LeURiqxcGhZ24PzuRNaUBtbhVeuUAvky1naH395A/1nY0P2bWvrw/BreRtIB/EzTDkGBpqCwEw==",
       "path": "system.threading.timer/4.0.1",
       "hashPath": "system.threading.timer.4.0.1.nupkg.sha512"
+    },
+    "EFCore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
       "type": "referenceassembly",

@@ -1,12 +1,15 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
+import Navigation from '../components/Navigation';
 
-export class Home extends Component{
-
-    render(){
-        return(
-            <div className="mt-5 d-flex justify-content-left">
-                This is Home page.
-            </div>
-        )
-    }
+class HomePage extends Component {
+  render() {
+    return (
+      <div className="HomePage">
+        <Navigation />
+        <h2>Home Page</h2>
+      </div>
+    );
+  }
 }
+
+export default HomePage;
